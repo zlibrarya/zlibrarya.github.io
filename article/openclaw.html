@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zlibrarya.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="OpenClaw 本地 AI 助手完整部署指南（小白零踩坑）什么是 OpenClawOpenClaw 是一个开源自托管的个人 AI 助手，它运行在你自己的设备上，通过你日常使用的聊天软件（WhatsApp、Telegram、Discord、iMessage 等）与你交互。 核心特性 本地优先：所有对话记录、操作日志存储在你的硬盘上，数据完全自主可控 多渠道支持：支持 WhatsApp、Telegr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenClaw 本地 AI 助手完整部署指南（小白零踩坑）">
+<meta property="og:url" content="https://zlibrarya.github.io/article/openclaw.html">
+<meta property="og:site_name" content="Zlibrary最新可用网址，入口镜像">
+<meta property="og:description" content="OpenClaw 本地 AI 助手完整部署指南（小白零踩坑）什么是 OpenClawOpenClaw 是一个开源自托管的个人 AI 助手，它运行在你自己的设备上，通过你日常使用的聊天软件（WhatsApp、Telegram、Discord、iMessage 等）与你交互。 核心特性 本地优先：所有对话记录、操作日志存储在你的硬盘上，数据完全自主可控 多渠道支持：支持 WhatsApp、Telegr">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-01-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-14T14:20:10.292Z">
+<meta property="article:author" content="Zlibrary">
+<meta property="article:tag" content="OpenClaw">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zlibrarya.github.io/article/openclaw.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://zlibrarya.github.io/article/openclaw.html","path":"article/openclaw.html","title":"OpenClaw 本地 AI 助手完整部署指南（小白零踩坑）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>OpenClaw 本地 AI 助手完整部署指南（小白零踩坑） | Zlibrary最新可用网址，入口镜像</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+  <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+  <script>LA.init({id:"L76dmI735CmdPORZ",ck:"L76dmI735CmdPORZ"})</script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Zlibrary最新可用网址，入口镜像</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OpenClaw-%E6%9C%AC%E5%9C%B0-AI-%E5%8A%A9%E6%89%8B%E5%AE%8C%E6%95%B4%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97%EF%BC%88%E5%B0%8F%E7%99%BD%E9%9B%B6%E8%B8%A9%E5%9D%91%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">OpenClaw 本地 AI 助手完整部署指南（小白零踩坑）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-OpenClaw"><span class="nav-number">1.1.</span> <span class="nav-text">什么是 OpenClaw</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7"><span class="nav-number">1.1.1.</span> <span class="nav-text">核心特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.1.2.</span> <span class="nav-text">适用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%A6%81%E6%B1%82"><span class="nav-number">1.2.</span> <span class="nav-text">系统要求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E8%A6%81%E6%B1%82"><span class="nav-number">1.2.1.</span> <span class="nav-text">硬件要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E8%A6%81%E6%B1%82"><span class="nav-number">1.2.2.</span> <span class="nav-text">软件要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%A6%81%E6%B1%82"><span class="nav-number">1.2.3.</span> <span class="nav-text">网络要求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F%E9%80%89%E6%8B%A9"><span class="nav-number">1.3.</span> <span class="nav-text">安装方式选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E9%80%9A%E8%BF%87%E7%AC%AC%E4%B8%89%E6%96%B9%E4%BA%91%EF%BC%8C%E7%A7%92%E7%BA%A7%E5%AE%89%E8%A3%85%E4%B8%8E%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE"><span class="nav-number">1.3.1.</span> <span class="nav-text">可通过第三方云，秒级安装与快速配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E5%AE%98%E6%96%B9%E6%8E%A8%E8%8D%90%E5%AE%89%E8%A3%85%EF%BC%88npm-pnpm%EF%BC%89"><span class="nav-number">1.3.2.</span> <span class="nav-text">方法一：官方推荐安装（npm&#x2F;pnpm）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4-1%EF%BC%9A%E5%AE%89%E8%A3%85-Node-js-v22"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">步骤 1：安装 Node.js v22+</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zlibrary</p>
+  <div class="site-description" itemprop="description">Zlibrary最新可用网址，入口镜像</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://www.qiip.cc/" title="https:&#x2F;&#x2F;www.qiip.cc" rel="noopener" target="_blank">蜜蜂导航</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zlibrarya.github.io/article/openclaw.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zlibrary">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zlibrary最新可用网址，入口镜像">
+      <meta itemprop="description" content="Zlibrary最新可用网址，入口镜像">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="OpenClaw 本地 AI 助手完整部署指南（小白零踩坑） | Zlibrary最新可用网址，入口镜像">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          OpenClaw 本地 AI 助手完整部署指南（小白零踩坑）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-01-30 00:00:00" itemprop="dateCreated datePublished" datetime="2026-01-30T00:00:00+08:00">2026-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-03-14 22:20:10" itemprop="dateModified" datetime="2026-03-14T22:20:10+08:00">2026-03-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/article/" itemprop="url" rel="index"><span itemprop="name">article</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="OpenClaw-本地-AI-助手完整部署指南（小白零踩坑）"><a href="#OpenClaw-本地-AI-助手完整部署指南（小白零踩坑）" class="headerlink" title="OpenClaw 本地 AI 助手完整部署指南（小白零踩坑）"></a>OpenClaw 本地 AI 助手完整部署指南（小白零踩坑）</h1><h2 id="什么是-OpenClaw"><a href="#什么是-OpenClaw" class="headerlink" title="什么是 OpenClaw"></a>什么是 OpenClaw</h2><p>OpenClaw 是一个开源自托管的个人 AI 助手，它运行在你自己的设备上，通过你日常使用的聊天软件（WhatsApp、Telegram、Discord、iMessage 等）与你交互。</p>
+<h3 id="核心特性"><a href="#核心特性" class="headerlink" title="核心特性"></a>核心特性</h3><ul>
+<li><strong>本地优先</strong>：所有对话记录、操作日志存储在你的硬盘上，数据完全自主可控</li>
+<li><strong>多渠道支持</strong>：支持 WhatsApp、Telegram、Discord、Slack、Signal、iMessage 等 12+ 聊天平台</li>
+<li><strong>持久记忆</strong>：能够记住你的历史对话和偏好，形成私人知识库</li>
+<li><strong>主动服务</strong>：可设置定时任务，让 AI 主动推送提醒和信息</li>
+<li><strong>系统级操作</strong>：能执行浏览器自动化、Shell 命令、文件操作等<br>​<span id="more"></span></li>
+</ul>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
+<li>个人知识管理：自动整理笔记、总结文档</li>
+<li>Web 自动化：自动填表、抓取数据、监控价格</li>
+<li>智能生活控制：连接智能家居设备</li>
+<li>开发运维辅助：运行测试脚本、监控系统状态</li>
+</ul>
+<h2 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h2><h3 id="硬件要求"><a href="#硬件要求" class="headerlink" title="硬件要求"></a>硬件要求</h3><ul>
+<li>处理器：任意现代处理器</li>
+<li>内存：至少 2GB RAM</li>
+<li>存储空间：至少 1GB 可用空间</li>
+</ul>
+<h3 id="软件要求"><a href="#软件要求" class="headerlink" title="软件要求"></a>软件要求</h3><ul>
+<li><strong>操作系统</strong>：<ul>
+<li>✅ macOS 12.0 或更高版本（推荐）</li>
+<li>✅ Linux（Ubuntu 20.04+ &#x2F; Debian 11+）</li>
+<li>✅ Windows 10&#x2F;11（需要 WSL2，强烈推荐）</li>
+</ul>
+</li>
+<li><strong>Node.js</strong>：v22.17.0 或更高版本（必须）</li>
+<li><strong>包管理器</strong>：npm（自带）或 pnpm（推荐）</li>
+</ul>
+<h3 id="网络要求"><a href="#网络要求" class="headerlink" title="网络要求"></a>网络要求</h3><ul>
+<li>稳定的互联网连接</li>
+<li>能够访问 GitHub 和 openclaw.ai 官网</li>
+</ul>
+<h2 id="安装方式选择"><a href="#安装方式选择" class="headerlink" title="安装方式选择"></a>安装方式选择</h2><p>OpenClaw提供多种安装方式，根据你的需求选择：</p>
+<table>
+<thead>
+<tr>
+<th align="left">安装方式</th>
+<th align="left">推荐人群</th>
+<th align="left">难度</th>
+<th align="left">优点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">npm&#x2F;pnpm 安装</td>
+<td align="left">普通用户</td>
+<td align="left">⭐⭐</td>
+<td align="left">官方推荐，更新方便</td>
+</tr>
+<tr>
+<td align="left">安装脚本</td>
+<td align="left">想快速上手的用户</td>
+<td align="left">⭐</td>
+<td align="left">一键安装，最简单</td>
+</tr>
+<tr>
+<td align="left">从源码安装</td>
+<td align="left">开发者</td>
+<td align="left">⭐⭐⭐⭐</td>
+<td align="left">可自定义，适合贡献代码</td>
+</tr>
+<tr>
+<td align="left">Docker 安装</td>
+<td align="left">容器化部署用户</td>
+<td align="left">⭐⭐⭐</td>
+<td align="left">隔离性好，易迁移</td>
+</tr>
+</tbody></table>
+<h3 id="可通过第三方云，秒级安装与快速配置"><a href="#可通过第三方云，秒级安装与快速配置" class="headerlink" title="可通过第三方云，秒级安装与快速配置"></a>可通过第三方云，秒级安装与快速配置</h3><p>现在各大云平台都已经支持这个智能体，适合希望快速部署免去本地环境调试麻烦的团队和个人；如果不想安装在本机，可以一键部署云上OpenClaw：</p>
+<blockquote>
+<p><strong>云产品福利专区</strong></p>
+<ul>
+<li>腾讯云秒级部署：<a target="_blank" rel="noopener" href="https://curl.qcloud.com/RukmXbme">https://curl.qcloud.com/RukmXbme</a></li>
+<li>阿里云秒级部署：<a target="_blank" rel="noopener" href="https://www.aliyun.com/activity/ecs/clawdbot?userCode=2tmo4hnt">https://www.aliyun.com/activity/ecs/clawdbot</a></li>
+<li>天翼云一键部署：<a target="_blank" rel="noopener" href="https://www.ctyun.cn/t/Z8G2MLI6e68u2sjfeEJYgZ1CmN0kwnS7">https://www.ctyun.cn/t/Z8G2MLI6e68u2sjfeEJYgZ1CmN0kwnS7</a></li>
+<li>京东云一键部署：<a target="_blank" rel="noopener" href="https://3.cn/2Gc78-TT">https://3.cn/2Gc78-TT</a></li>
+<li>优刻得一键部署（限时优惠5折）：<a target="_blank" rel="noopener" href="https://www.ucloud.cn/site/active/kuaijiesale.html?cps_code=C1xEF66F9223086">https://www.ucloud.cn/site/active/kuaijiesale.html</a></li>
+<li>OpenClaw建议使用 2C4G：<a target="_blank" rel="noopener" href="https://curl.qcloud.com/74iJUr08">https://curl.qcloud.com/74iJUr08</a></li>
+<li>云上OpenClaw最全教程合辑：<a target="_blank" rel="noopener" href="https://curl.qcloud.com/fygUx0P1">https://cloud.tencent.com/developer/article/2624973</a></li>
+<li>使用阿里云的轻量级服务器安装教程合辑：<a target="_blank" rel="noopener" href="https://help.aliyun.com/zh/simple-application-server/use-cases/quickly-deploy-and-use-openclaw?source=5176.29345612&userCode=2tmo4hnt">https://help.aliyun.com</a></li>
+<li>使用天翼云服务器安装教程合辑：<a target="_blank" rel="noopener" href="https://www.ctyun.cn/t/ubVwgHtq4fwu2sjfeEJYgZ1CmN0kwnS7">https://www.ctyun.cn/t/ubVwgHtq4fwu2sjfeEJYgZ1CmN0kwnS7</a></li>
+<li>玩转OpenClaw：<a target="_blank" rel="noopener" href="https://www.qiip.cc/42913.html">OpenClaw(Clawdbot)上云一键秒级部署保姆级教程</a></li>
+</ul>
+</blockquote>
+<h3 id="方法一：官方推荐安装（npm-pnpm）"><a href="#方法一：官方推荐安装（npm-pnpm）" class="headerlink" title="方法一：官方推荐安装（npm&#x2F;pnpm）"></a>方法一：官方推荐安装（npm&#x2F;pnpm）</h3><p>这是官方推荐的安装方式，适合大多数用户。</p>
+<h4 id="步骤-1：安装-Node-js-v22"><a href="#步骤-1：安装-Node-js-v22" class="headerlink" title="步骤 1：安装 Node.js v22+"></a>步骤 1：安装 Node.js v22+</h4><p>检查 Node.js 版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">node --version</span><br><span class="line"></span><br><span class="line"><span class="comment">##### 如果版本低于 v22，需要升级：</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### 使用 nvm（推荐）</span></span><br><span class="line">```bash</span><br><span class="line"><span class="comment"># 安装 nvm（如果尚未安装）</span></span><br><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新加载 shell 配置</span></span><br><span class="line"><span class="built_in">source</span> ~/.bashrc <span class="comment"># 或 source ~/.zshrc</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 Node.js v22</span></span><br><span class="line">nvm install 22</span><br><span class="line">nvm use 22</span><br></pre></td></tr></table></figure>
+
+<p>更多内容请访问原文地址：<a target="_blank" rel="noopener" href="https://www.qiip.cc/42866.html">OpenClaw 本地 AI 助手完整部署指南（小白零踩坑）</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/OpenClaw/" rel="tag"># OpenClaw</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/article/netflix.html" rel="prev" title="ChatGPT、奈飞网飞Netfilx，Spotify，Tidal，Hbo，Hbogo，Youtube，Disney+等合租平台">
+                  <i class="fa fa-angle-left"></i> ChatGPT、奈飞网飞Netfilx，Spotify，Tidal，Hbo，Hbogo，Youtube，Disney+等合租平台
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Zlibrary</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
